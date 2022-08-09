@@ -1,0 +1,26 @@
+syntax="proto3";
+
+package api;
+
+option go_package="../api";
+
+// number 1 + number 2
+message CalculatorInputMessage{
+    int32 number1 =1;
+    int32 number2 =2;
+    string operator=3;
+}
+
+message Error{
+    string code =1;
+    string message=2;
+}
+
+message CalculatorResultMessage{
+    int32 resNumber=1;
+    Error error=2;
+}
+
+service Calculator{
+    rpc doCalc (CalculatorInputMessage) returns (CalculatorResultMessage){}
+}
